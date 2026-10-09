@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Dynamic Store</title>
+<style>.card{border:1px solid #ccc;margin:6px;padding:8px;display:inline-block;width:200px}</style></head>
+<body><h1>Dynamic Store</h1><div id="products">Loading products...</div>
+<button id="load-more">Load more</button>
+<script>
+let page = 1, total = 1;
+async function load(){
+  const r = await fetch('/api/products?page=' + page);
+  const d = await r.json(); total = d.total_pages;
+  const box = document.getElementById('products');
+  if (page === 1) box.innerHTML = '';
+  for (const p of d.products){
+    const el = document.createElement('div'); el.className = 'card';
+    el.innerHTML = '<h3 class="title">'+p.title+'</h3><span class="price">₹ '+p.price_inr+'</span>'
+                 + '<span class="rating"> ★ '+p.rating+'</span>';
+    box.appendChild(el);
+  }
+  if (page >= total) document.getElementById('load-more').style.display='none';
+}
+document.getElementById('load-more').onclick = () => { page++; load(); };
+load();
+</script></body></html>

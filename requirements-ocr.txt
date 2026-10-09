@@ -1,0 +1,3 @@
+# Optional: OCR for images and scanned invoices (large download, installs PyTorch)
+easyocr
+opencv-python-headless

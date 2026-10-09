@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Scrape data from a website into a file",
+    "tools": ["scrape_analyze", "scrape_api", "scrape_embedded", "scrape_iframes", "scrape_page", "scrape_structure", "scrape_save"],
+    "examples": ["scrape product names and prices from http://localhost:8001/dynamic/", "extract the table from this website", "get all products from this site and save as csv", "scrape this url", "collect data from the iframes on this page"],
+    "description": "1. Call scrape_analyze with the URL. Report what it found: static or dynamic, APIs, embedded JSON, number of iframes, blockers.\n2. If the recommended strategy is 'stop' (CAPTCHA, login, robots.txt), explain why and stop.\n3. Run the recommended extraction: api -> scrape_api (needs user confirmation), embedded -> scrape_embedded, iframes -> scrape_iframes, page -> scrape_page.\n4. If the user named fields (e.g. name, price), call scrape_structure with those fields.\n5. Call scrape_save (csv unless the user asked for json or xlsx).\n6. Answer with: site type, method used and why, row count, file path."
+  },
+  {
+    "title": "Research a topic on the web",
+    "tools": ["web_search", "web_read"],
+    "examples": ["search the web for the latest news about AI agents", "find information about LangGraph", "what is the current price of", "look up who won", "research this topic online"],
+    "description": "1. Call web_search with a focused query.\n2. Call web_read on the 1-2 most relevant results.\n3. Answer in a short summary with the source links. Say clearly if results look outdated."
+  },
+  {
+    "title": "Analyze a data file (CSV or Excel)",
+    "tools": ["data_describe", "data_analyze", "chart_make"],
+    "examples": ["analyze sales.csv", "what is the total revenue by region in sales_data.csv", "which product sold the most", "give me the top 5 rows by revenue", "average order value in this spreadsheet"],
+    "description": "1. Call data_describe to learn the exact column names.\n2. Call data_analyze with the right operation (group_sum, top_n, mean...).\n3. If the user asked for a chart, call chart_make.\n4. Answer with the numbers in a short list."
+  },
+  {
+    "title": "Make a chart from a data file",
+    "tools": ["data_describe", "chart_make", "data_analyze"],
+    "examples": ["make a bar chart of revenue by region from sales_data.csv", "plot sales by month", "create a pie chart of orders by category", "draw a graph of this data"],
+    "description": "1. Call data_describe to get the column names.\n2. Call chart_make with the right x, y and chart type.\n3. Return the chart path and one sentence describing what it shows."
+  },
+  {
+    "title": "Extract fields from an invoice",
+    "tools": ["invoice_extract", "doc_read"],
+    "examples": ["extract the invoice details from invoice.pdf", "what is the total amount on this invoice", "read the GST number from the invoice", "process this invoice"],
+    "description": "1. Call invoice_extract with the file path.\n2. Report invoice number, date, vendor, total and any validation warnings.\n3. Mention the saved JSON file path."
+  },
+  {
+    "title": "Read and summarise a document file",
+    "tools": ["doc_read", "ocr_image"],
+    "examples": ["summarise report.pdf", "read this document and tell me the key points", "what does this file say", "extract text from this image"],
+    "description": "1. Use doc_read for PDF/DOCX/TXT, ocr_image for images.\n2. Summarise in 5-7 bullet points, quoting page numbers when available."
+  },
+  {
+    "title": "Write and send an email",
+    "tools": ["email_draft", "email_send"],
+    "examples": ["send an email to rahul@example.com about the meeting", "write an email to my manager", "email the report summary to priya@example.com", "draft a mail"],
+    "description": "1. Call email_draft with a clear subject and a short professional body.\n2. If the user asked to send it, call email_send with the draft_id (this asks the user for confirmation).\n3. If they only asked for a draft, show the draft and stop."
+  },
+  {
+    "title": "Do a task in a website with the browser",
+    "tools": ["browser_open", "browser_find", "browser_click", "browser_type", "browser_screenshot"],
+    "examples": ["open http://localhost:8001 and click the dynamic store link", "go to this site and search for laptops", "fill the form on this page", "take a screenshot of this website"],
+    "description": "1. browser_open the URL.\n2. browser_find the element you need.\n3. browser_click or browser_type using the element number.\n4. Repeat as needed; take a screenshot at the end if useful.\n5. Stop and ask the user on CAPTCHA or login pages."
+  },
+  {
+    "title": "Remember or recall a fact",
+    "tools": ["memory_save", "memory_search"],
+    "examples": ["remember that my manager is Priya", "remember I prefer reports in excel", "what did I tell you about my manager", "do you remember my preference"],
+    "description": "To remember: call memory_save with one clear sentence. To recall: call memory_search. Never store passwords, OTPs or card numbers."
+  }
+]

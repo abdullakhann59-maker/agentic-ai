@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/chroma/
+data/nexus.db
+data/workspace/
+data/knowledge_files/
+venv/
+.venv/
